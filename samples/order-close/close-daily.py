@@ -23,12 +23,12 @@ from __future__ import (absolute_import, division, print_function,)
 
 import argparse
 import datetime
-import random
 
 import backtrader as bt
 import backtrader.feeds as btfeeds
 
 from backtrader.utils.py3 import with_metaclass
+import secrets
 
 
 class St(bt.Strategy):
@@ -52,7 +52,7 @@ class St(bt.Strategy):
         if self.order:
             return
 
-        if not random.randint(0, 5):  # roll a dice to decide entering/exit
+        if not secrets.SystemRandom().randint(0, 5):  # roll a dice to decide entering/exit
             if self.position:
                 print('%s: SELL CREATED' % dtstr)
                 self.order = self.close(exectype=bt.Order.Close)

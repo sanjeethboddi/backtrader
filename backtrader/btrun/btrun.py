@@ -25,11 +25,11 @@ import argparse
 import datetime
 import inspect
 import itertools
-import random
 import string
 import sys
 
 import backtrader as bt
+import secrets
 
 
 DATAFORMATS = dict(
@@ -284,7 +284,7 @@ def loadmodule(modpath, modname=''):
 
     if not modname:
         chars = string.ascii_uppercase + string.digits
-        modname = ''.join(random.choice(chars) for _ in range(10))
+        modname = ''.join(secrets.SystemRandom().choice(chars) for _ in range(10))
 
     version = (sys.version_info[0], sys.version_info[1])
 

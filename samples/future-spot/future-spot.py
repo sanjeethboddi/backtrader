@@ -22,13 +22,13 @@ from __future__ import (absolute_import, division, print_function,
                         unicode_literals)
 
 import argparse
-import random
 import backtrader as bt
+import secrets
 
 
 # The filter which changes the close price
 def close_changer(data, *args, **kwargs):
-    data.close[0] += 50.0 * random.randint(-1, 1)
+    data.close[0] += 50.0 * secrets.SystemRandom().randint(-1, 1)
     return False  # length of stream is unchanged
 
 
@@ -45,7 +45,7 @@ class St(bt.Strategy):
 
     def next(self):
         if not self.position:
-            if random.randint(0, 1):
+            if secrets.SystemRandom().randint(0, 1):
                 self.buy(data=self.data0)
                 self.entered = len(self)
 
