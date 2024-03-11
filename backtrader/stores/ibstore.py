@@ -26,7 +26,6 @@ from copy import copy
 from datetime import date, datetime, timedelta
 import inspect
 import itertools
-import random
 import threading
 import time
 
@@ -37,6 +36,7 @@ from backtrader import TimeFrame, Position
 from backtrader.metabase import MetaParams
 from backtrader.utils.py3 import bytes, bstr, queue, with_metaclass, long
 from backtrader.utils import AutoDict, UTC
+import secrets
 
 bytes = bstr  # py2/3 need for ibpy
 
@@ -247,7 +247,7 @@ class IBStore(with_metaclass(MetaSingleton, object)):
 
         # Use the provided clientId or a random one
         if self.p.clientId is None:
-            self.clientId = random.randint(1, pow(2, 16) - 1)
+            self.clientId = secrets.SystemRandom().randint(1, pow(2, 16) - 1)
         else:
             self.clientId = self.p.clientId
 

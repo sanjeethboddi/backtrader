@@ -24,9 +24,9 @@ from __future__ import (absolute_import, division, print_function,
 
 import argparse
 import datetime
-import random
 
 import backtrader as bt
+import secrets
 
 
 class St(bt.Strategy):
@@ -67,7 +67,7 @@ class St(bt.Strategy):
 
         # Data 0
         for data in self.datas:
-            toss = random.randint(1, 10)
+            toss = secrets.SystemRandom().randint(1, 10)
             curpos = self.getposition(data)
             if curpos.size:
                 if toss > 5:
